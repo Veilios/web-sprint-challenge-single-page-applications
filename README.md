@@ -57,14 +57,14 @@ It is a type of test that ensures that the application works the way it is suppo
 
 Your finished project must include all of the following requirements:
 
-- [ ] A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable)
-- [ ] A form with a "/pizza" route
-- [ ] A name text input field
-- [ ] Validation for name - name must be at least 2 characters
-- [ ] A dropdown for pizza size
-- [ ] A checklist for toppings - at least 4 (hint: name each separately!)
-- [ ] Text input for special instructions
-- [ ] An Add to Order button that submits form and returns a database record of name, size, toppings and special instructions
+- [Done] A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable)
+- [Done] A form with a "/pizza" route
+- [Done] A name text input field
+- [Done] Validation for name - name must be at least 2 characters
+- [Done] A dropdown for pizza size
+- [Done] A checklist for toppings - at least 4 (hint: name each separately!)
+- [Done] Text input for special instructions
+- [Done] An Add to Order button that submits form and returns a database record of name, size, toppings and special instructions
 
 #### Testing MVP
 
