@@ -69,8 +69,8 @@ const PizzaForm = (props) => {
         e.preventDefault();
         console.log("form submitted");
 
-        axios.
-        post("https://reqres.in/api/users", pizzaState)
+        axios
+        .post("https://reqres.in/api/users", pizzaState)
         .then(res => {
             setOrder(res.data);
             console.log("completed", res);
@@ -80,78 +80,74 @@ const PizzaForm = (props) => {
 
     return (
         <div>
-            <Form onSubmit={formSubmit} >
-                <FormGroup row>
-                    <Label for="name" sm={2} >Name</Label>
-                    <Col sm={10} >
-                        <Input type="name" name="name" id="name" placeholder="John Doe" value={pizzaState.name} onChange={inputChange} />
-                    </Col>
+            <Form className="pizzaForm" onSubmit={formSubmit} >
+                <FormGroup>
+                    <Label for="name" >Name</Label>
+                        <Input className="name" type="text" name="name" id="name" placeholder="John Doe" value={pizzaState.name} onChange={inputChange} />
+                    {errorState.name.length > 2 ? <p className="error">{errorState.name}</p> : null }
                 </FormGroup>
-                <FormGroup row>
-                    <Label for="size" sm={2} >Size</Label>
-                    <Col sm={10} >
-                        <Input type="select" name="size" id="size" value={pizzaState.size} onChange={inputChange} >
+                <FormGroup>
+                    <Label for="size" >Size</Label>
+                        <Input size="lg" className="size" type="select" name="size" id="size" value={pizzaState.size} onChange={inputChange} >
                         <option value="" >--Select A Size--</option>
                         <option value="Personal" >Personal</option>
                         <option value="Medium" >Medium</option>
                         <option value="Large" >Large</option>
                         <option value="Mega" >Mega</option>
                         </Input>
-                    </Col>
+                    {errorState.size.length > 0 ? <p className="error">{errorState.size}</p> : null }
                 </FormGroup>
-                <FormGroup row>
+                <FormGroup>
                     <legend>Pick Your Toppings</legend>
-                    <Col sm={10} >
-                        <FormGroup check>
+                    <Col className="toppings" sm={10} >
+                        <FormGroup className="toppingBox" check>
+                            <Input className="pepporoni" type="radio" name="pepporoni" value={pizzaState.pepporoni} onChange={inputChange} />{' '}
                             <Label for="pepporoni" check>
-                                <Input type="radio" name="pepporoni" value={pizzaState.pepporoni} onChange={inputChange} />{' '}
                                 Pepporoni
                             </Label>
                         </FormGroup>
                         <FormGroup check>
+                            <Input className="mushroom" type="radio" name="mushroom" value={pizzaState.mushroom} onChange={inputChange} />{' '}
                             <Label for="mushroom" check>
-                                <Input type="radio" name="mushroom" value={pizzaState.mushroom} onChange={inputChange} />{' '}
                                 Mushroom
                             </Label>
                         </FormGroup>
                         <FormGroup check>
+                            <Input className="salami" type="radio" name="salami" value={pizzaState.salami} onChange={inputChange} />{' '}
                             <Label for="salami" check>
-                                <Input type="radio" name="salami" value={pizzaState.salami} onChange={inputChange} />{' '}
                                 Salami
                             </Label>
                         </FormGroup>
                         <FormGroup check>
+                            <Input className="mystery" type="radio" name="mystery" value={pizzaState.mystery} onChange={inputChange} />{' '}
                             <Label for="mystery" check>
-                                <Input type="radio" name="mystery" value={pizzaState.mystery} onChange={inputChange} />{' '}
                                 Mystery
                             </Label>
                         </FormGroup>
                         <FormGroup check disabled>
+                            <Input type="radio" name="pinapple" disabled/>{' '}
                             <Label for="pinapple" check>
-                                <Input type="radio" name="pinapple" disabled/>{' '}
                                 Pineapple (why?)
                             </Label>
                         </FormGroup>
                     </Col>
                 </FormGroup>
-                <FormGroup row>
-                    <Label for="instructions" sm={2}>Special Instructions</Label>
-                    <Col sm={10}>
+                <FormGroup>
+                    <Label for="instructions" >Special Instructions</Label>
                     <Input type="textarea" name="instructions" id="instructions" value={pizzaState.instructions} onChange={inputChange} />
-                    </Col>
                 </FormGroup>
                 <Button type="submit" color="primary"  >Submit Order</Button>
             </Form>
 
-            <div>
-                <Card body>
+            <div className="order">
+                <Card>
                     <CardTitle>{order.name}</CardTitle>
                     <CardSubtitle>{order.size}</CardSubtitle>
                     <CardText>
-                        {order.pepporoni === true ? "Pepporoni" : null}
-                        {order.mushroom === true ? "Mushroom" : null}
-                        {order.salami === true ? "Salami" : null}
-                        {order.mystery === true ? "Mystery" : null}
+                        {order.pepporoni === true ? "Pepporoni" : null}<br></br>
+                        {order.mushroom === true ? "Mushroom" : null}<br></br>
+                        {order.salami === true ? "Salami" : null}<br></br>
+                        {order.mystery === true ? "Mystery" : null}<br></br>
                     </CardText>
                     <CardText>{order.instructions}</CardText>
                     {order === [""]  ? <Link to="/order" ><Button>Confirm</Button></Link> : null }
